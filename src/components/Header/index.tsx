@@ -1,8 +1,7 @@
 import { HeaderContainer } from "./styles";
 import logoCoffee from '../../assets/coffee-delivery-logo.svg'
-import { NavLink } from "react-router-dom";
-import { MapPin, ShoppingCart } from "phosphor-react";
-import { Button } from "../Button";
+import { MapPin } from "phosphor-react";
+import { ButtonCart } from "./components/ButtonCart";
 
 export function Header() {
     return (
@@ -13,9 +12,7 @@ export function Header() {
                     <MapPin size={24} weight="fill" />
                     Salvador, BA
                 </div>
-                <Button>
-                    <ShoppingCart size={24} />
-                </Button>
+                <ButtonCart/>
             </div>
         </HeaderContainer>
     )

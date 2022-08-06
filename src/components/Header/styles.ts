@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header.attrs(props => ({
 }))`
     display: flex;
     width: 100%;
+    max-width: 90rem;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 10rem;
@@ -30,13 +31,4 @@ export const HeaderContainer = styled.header.attrs(props => ({
             }
         }
     }
-    /* nav {
-        display: flex;
-        gap: 0.75rem;
-        
-        a {
-            display: flex;
-            gap: 0.25rem;
-        }
-    } */
 `
