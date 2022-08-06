@@ -1,5 +1,10 @@
+import { Intro } from "./components/Intro";
+import { HomeContainer } from "./styles";
+
 export function Home() {
     return(
-        <div>home</div>
+        <HomeContainer>
+            <Intro/>
+        </HomeContainer>
     )
 }
