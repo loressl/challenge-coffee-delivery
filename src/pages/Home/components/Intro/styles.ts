@@ -41,6 +41,13 @@ export const ContentTitleItems = styled.div`
     font-stretch:100;
     color: ${(props) => props.theme["base-subtitle"]};
   }
+
+  & .list-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 4.125rem;
+    grid-row-gap: 1.25rem;
+  }
 `;
 
 export const Image = styled.div`
