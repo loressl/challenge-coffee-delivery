@@ -14,7 +14,6 @@ interface ItemContainer {
 
 export const ItemContainer = styled.div<ItemContainer>`
   display: flex;
-  width: 18.75rem;
   height: 2rem;
   align-items: center;
   gap: 0.75rem;

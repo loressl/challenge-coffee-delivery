@@ -55,7 +55,6 @@ export function Intro(){
                     ))}
                 </div>
             </ContentTitleItems>
-
             <Image>
                 <img src={cupCoffee} alt="Coffee delivery"/>
             </Image>

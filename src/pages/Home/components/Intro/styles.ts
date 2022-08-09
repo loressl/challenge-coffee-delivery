@@ -18,6 +18,7 @@ export const IntroContainer = styled.div`
   align-items: center;
   flex-direction: row;
   gap: 3.5rem;
+  flex-wrap: wrap;
 `;
 
 export const ContentTitleItems = styled.div`
