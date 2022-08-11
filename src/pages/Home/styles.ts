@@ -10,7 +10,7 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    p {
+    & .title-container {
       margin-top: 2rem;
       margin-left: calc(50% - 193px/2 - 463.5px);
       font-family: 'Baloo 2';
@@ -22,6 +22,9 @@ export const HomeContainer = styled.div`
 
     & .coffee-list{
       display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
       flex-wrap: wrap;
       max-width: 70rem;
       width: 100%;

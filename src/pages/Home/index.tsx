@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CardCoffee } from "./components/CardCoffee";
 import { Intro } from "./components/Intro";
 import { HomeContainer } from "./styles";
 
@@ -22,8 +23,9 @@ export function Home() {
         <HomeContainer>
             <Intro />
             <div className="coffee-list-container">
-                <p>Nossos cafés</p>
+                <p className="title-container">Nossos cafés</p>
                 <div className="coffee-list">
+                    <CardCoffee/>
                     {/* <img src={teste} alt="teste" /> */}
                 </div>
             </div>
