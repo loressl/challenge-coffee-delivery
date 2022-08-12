@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export type IconColorButton = "cart" | "header"
 export type ButtonCartColor = "header" | "cart";
-export type ButtonCartHover = "purple";
+export type ButtonCartHover = "cart";
 
 interface ButtonCartContainerProps {
   buttonColor: ButtonCartColor;
@@ -21,6 +21,10 @@ const iconColor ={
     cart: '#FFFFFF'
 }
 
+const buttonHoverColor ={
+  cart: '#8047F8'
+}
+
 export const ButtonCartContainer = styled.button<ButtonCartContainerProps>`
   display: flex;
   justify-content: center;
@@ -32,9 +36,15 @@ export const ButtonCartContainer = styled.button<ButtonCartContainerProps>`
   cursor: pointer;
   position: relative;
 
-  &:hover {
-    filter: brightness(0.95);
-  }
+  ${(props) => props.buttonHover ? css`
+      &:hover {
+        background-color: ${buttonHoverColor[props.buttonHover]};
+      }
+  ` : css`
+      &:hover {
+        filter: brightness(0.95);
+      }
+  `}
 
   ${(props) => css`
     svg {
