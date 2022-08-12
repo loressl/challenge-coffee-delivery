@@ -1,5 +1,10 @@
+import { Address } from "./components/Address";
+import { CheckoutContainer } from "./styles";
+
 export function Checkout() {
     return(
-        <div>Checkout</div>
+        <CheckoutContainer>
+            <Address/>
+        </CheckoutContainer>
     )
 }
