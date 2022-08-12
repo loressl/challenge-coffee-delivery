@@ -26,6 +26,12 @@ export function Home() {
                 <p className="title-container">Nossos cafés</p>
                 <div className="coffee-list">
                     <CardCoffee/>
+                    <CardCoffee/>
+                    <CardCoffee/>
+                    <CardCoffee/>
+                    <CardCoffee/>
+                    <CardCoffee/>
+                    <CardCoffee/>
                     {/* <img src={teste} alt="teste" /> */}
                 </div>
             </div>

@@ -8,11 +8,13 @@ export const HomeContainer = styled.div`
 
   & .coffee-list-container{
     display: flex;
+    align-items: center;
     flex-direction: column;
 
     & .title-container {
+      width: 100%;
       margin-top: 2rem;
-      margin-left: calc(50% - 193px/2 - 463.5px);
+      margin-left: calc(50% - 193px/2 - 90px);
       font-family: 'Baloo 2';
       font-weight: 800;
       font-size: 2rem;
@@ -23,12 +25,13 @@ export const HomeContainer = styled.div`
     & .coffee-list{
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 2rem;
       flex-wrap: wrap;
       max-width: 70rem;
       width: 100%;
       margin-top: 3.375rem;
+      margin-bottom: 2.5rem;
     }
   }
 `;

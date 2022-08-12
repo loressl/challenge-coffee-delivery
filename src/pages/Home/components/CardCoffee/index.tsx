@@ -1,4 +1,5 @@
 import { Minus, Plus } from "phosphor-react";
+import { ButtonCart } from "../../../../components/ButtonCart";
 import { ButtonSelectContainer, CardCoffeeContainer, Price } from "./styles";
 import coffeeTeste from '/coffee/arabe.svg'
 
@@ -21,6 +22,13 @@ export function CardCoffee(){
                             <Plus size={14}/>
                         </button>
                     </ButtonSelectContainer>
+                    <ButtonCart 
+                        buttonColor="cart"
+                        iconColorButton="cart"
+                        total={0}
+                        buttonHover="cart"
+                        onClickButton={() => console.log('cart')}
+                    />
                 </div>
             </Price>
         </CardCoffeeContainer>

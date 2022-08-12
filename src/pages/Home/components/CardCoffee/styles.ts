@@ -102,6 +102,7 @@ export const ButtonSelectContainer = styled.div`
     height: 100%;
     align-items: center;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 
     &:disabled {
       cursor: not-allowed;
