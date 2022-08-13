@@ -1,8 +1,8 @@
-import { AddressContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
-import {MapPinLine} from 'phosphor-react'
+import { AddressContainer, FormContainer, InputField, OrderedContainer, SelectedCoffesContainer } from "./styles";
+import { MapPinLine } from 'phosphor-react'
 
 export function Address() {
-    return(
+    return (
         <AddressContainer>
             <OrderedContainer>
                 <p>Complete seu pedido</p>
@@ -14,9 +14,40 @@ export function Address() {
                             <span>Informe o endereço onde deseja receber seu pedido</span>
                         </div>
                     </div>
-                    <form>
-                        
-                    </form>
+                    <FormContainer>
+                        <InputField
+                            placeholder="CEP"
+                            widthInput="12.5rem"
+                        />
+                        <InputField
+                            placeholder="Rua"
+                            widthInput="100%"
+                        />
+                        <div className="complement">
+                            <InputField
+                                placeholder="Número"
+                                widthInput="12.5rem"
+                            />
+                            <InputField
+                                placeholder="Complemento"
+                                widthInput="100%"
+                            />
+                        </div>
+                        <div className="complement">
+                            <InputField
+                                placeholder="Bairro"
+                                widthInput="12.5rem"
+                            />
+                            <InputField
+                                placeholder="Cidade"
+                                widthInput="100%"
+                            />
+                            <InputField
+                                placeholder="UF"
+                                widthInput="3.75rem"
+                            />
+                        </div>
+                    </FormContainer>
                 </div>
                 <div className="payment">
 

@@ -19,6 +19,10 @@ export const IntroContainer = styled.div`
   flex-direction: row;
   gap: 3.5rem;
   flex-wrap: wrap;
+
+  @media(max-width: 1000px) {
+    height: 100%;
+  }
 `;
 
 export const ContentTitleItems = styled.div`
