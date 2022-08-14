@@ -1,5 +1,6 @@
-import { AddressContainer, FormContainer, InputField, OrderedContainer, SelectedCoffesContainer } from "./styles";
+import { AddressContainer, FormContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
 import { MapPinLine } from 'phosphor-react'
+import { Input } from "../../../../components/Input";
 
 export function Address() {
     return (
@@ -15,36 +16,37 @@ export function Address() {
                         </div>
                     </div>
                     <FormContainer>
-                        <InputField
+                        <Input
                             placeholder="CEP"
-                            widthInput="12.5rem"
+                            widthCustom="12.5rem"
                         />
-                        <InputField
+                        <Input
                             placeholder="Rua"
-                            widthInput="100%"
+                            widthCustom="100%"
                         />
                         <div className="complement">
-                            <InputField
+                            <Input
                                 placeholder="Número"
-                                widthInput="12.5rem"
+                                widthCustom="12.5rem"
                             />
-                            <InputField
+                            <Input 
+                                widthCustom="100%"
                                 placeholder="Complemento"
-                                widthInput="100%"
+                                optional="Opcional"
                             />
                         </div>
                         <div className="complement">
-                            <InputField
+                            <Input
                                 placeholder="Bairro"
-                                widthInput="12.5rem"
+                                widthCustom="12.5rem"
                             />
-                            <InputField
+                            <Input
                                 placeholder="Cidade"
-                                widthInput="100%"
+                                widthCustom="100%"
                             />
-                            <InputField
+                            <Input
                                 placeholder="UF"
-                                widthInput="3.75rem"
+                                widthCustom="3.75rem"
                             />
                         </div>
                     </FormContainer>
@@ -55,7 +57,10 @@ export function Address() {
             </OrderedContainer>
 
             <SelectedCoffesContainer>
-                selected
+                <p>Complete seu pedido</p>
+                <div className="box-coffes-selected">
+
+                </div>
             </SelectedCoffesContainer>
         </AddressContainer>
     )

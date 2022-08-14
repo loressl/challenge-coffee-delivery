@@ -5,7 +5,6 @@ export const AddressContainer = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
   gap: 2rem;
 `;
@@ -91,25 +90,32 @@ export const FormContainer = styled.form`
   height: 12.5rem;
   align-self: stretch;
 
-  & .complement{
+  & .complement {
     display: flex;
     gap: 0.75rem;
     width: 100%;
   }
-`
+`;
 
-interface InputFieldProps {
-  widthInput: string
-}
-
-export const InputField = styled.input<InputFieldProps>`
+export const SelectedCoffesContainer = styled.div`
   display: flex;
-  align-items: center;
-  padding: 0.75rem;
-  background: ${props => props.theme["base-input"]};
-  border: 1px solid ${props => props.theme["base-button"]};
-  width: ${props => props.widthInput};
-  border-radius: 4px;
-`
+  flex-direction: column;
 
-export const SelectedCoffesContainer = styled.div``;
+  p {
+    font-family: "Baloo 2";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+    color: ${(props) => props.theme["base-subtitle"]};
+    margin-bottom: 15px;
+  }
+
+  & .box-coffes-selected {
+    width: 28rem;
+    height: 31.125rem;
+    background: ${(props) => props.theme["base-card"]};
+    border-radius: 6px 44px;
+    padding: 2.5rem;
+    gap: 1.5rem;
+  }
+`;
