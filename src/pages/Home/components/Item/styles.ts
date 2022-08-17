@@ -8,11 +8,11 @@ export const COLOR_BACKGROUND ={
 } as const
 
 
-interface ItemContainer {
+interface ItemContainerProps {
     colorBackgroundIcon: keyof typeof COLOR_BACKGROUND
 }
 
-export const ItemContainer = styled.div<ItemContainer>`
+export const ItemContainer = styled.div<ItemContainerProps>`
   display: flex;
   height: 2rem;
   align-items: center;

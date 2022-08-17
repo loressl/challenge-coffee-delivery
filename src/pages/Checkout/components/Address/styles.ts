@@ -33,38 +33,6 @@ export const OrderedContainer = styled.div`
     margin-bottom: 12px;
     gap: 2rem;
     padding: 40px;
-
-    & .address-title {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      max-width: 35rem;
-      height: 2.75rem;
-      gap: 0.5rem;
-
-      svg {
-        color: ${(props) => props.theme["yellow-dark"]};
-      }
-
-      & .phrase {
-        display: flex;
-        flex-direction: column;
-
-        span:first-of-type {
-          color: ${(props) => props.theme["base-subtitle"]};
-          line-height: 1.3;
-          align-self: stretch;
-          margin-bottom: 2px;
-        }
-
-        span:nth-child(2) {
-          color: ${(props) => props.theme["base-text"]};
-          font-size: 14px;
-          line-height: 1.3;
-          align-self: stretch;
-        }
-      }
-    }
   }
 
   & .payment {
@@ -77,6 +45,13 @@ export const OrderedContainer = styled.div`
     height: 13rem;
     background: ${(props) => props.theme["base-card"]};
     border-radius: 6px;
+
+    & .paymentMethods {
+      display: flex;
+      width: 35rem;
+      flex-direction: row;
+      gap: 0.75rem;
+    }
   }
 `;
 
