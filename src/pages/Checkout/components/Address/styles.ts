@@ -7,6 +7,7 @@ export const AddressContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 `;
 
 export const OrderedContainer = styled.div`
@@ -86,6 +87,8 @@ export const SelectedCoffesContainer = styled.div`
   }
 
   & .box-coffes-selected {
+    display: flex;
+    flex-direction: column;
     width: 28rem;
     height: 31.125rem;
     background: ${(props) => props.theme["base-card"]};
@@ -93,4 +96,9 @@ export const SelectedCoffesContainer = styled.div`
     padding: 2.5rem;
     gap: 1.5rem;
   }
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  border: 1px solid ${props => props.theme["base-button"]};
 `;

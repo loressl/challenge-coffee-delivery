@@ -1,8 +1,34 @@
-import { AddressContainer, FormContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
+import { AddressContainer, Divider, FormContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 import { Input } from "../../../../components/Input";
 import { Frame } from "../Frame";
 import { ButtonPayment } from "../ButtonPayment";
+import { ReactElement } from "react";
+import { CoffeeSelected } from "../CoffeeSelected";
+
+interface TypeButtonPayment {
+    type: string
+    name: string
+    icon: ReactElement
+}
+
+const typesButtonPayment = [
+    {
+        type: 'credito',
+        name: 'cartão de crédito',
+        icon: <CreditCard size={16}/>
+    },
+    {
+        type: 'debito',
+        name: 'cartão de débito',
+        icon: <Bank size={16}/>
+    },
+    {
+        type: 'dinheiro',
+        name: 'dinheiro',
+        icon: <Money size={16}/>
+    },
+] as TypeButtonPayment[]
 
 export function Address() {
     return (
@@ -60,18 +86,13 @@ export function Address() {
                         colorIcon="purple"
                     />
                     <div className="paymentMethods">
-                        <ButtonPayment
-                            name="Cartão de Crédito"
-                            icon={<CreditCard size={16}/>}
-                        />
-                        <ButtonPayment
-                            name="cartão de débito"
-                            icon={<Bank size={16}/>}
-                        />
-                        <ButtonPayment
-                            name="dinheiro"
-                            icon={<Money size={16}/>}
-                        />
+                        {typesButtonPayment.map((type) => (
+                            <ButtonPayment
+                                key={type.type}
+                                name={type.name}
+                                icon={type.icon}
+                            />
+                        ))}
                     </div>
                 </div>
             </OrderedContainer>
@@ -79,7 +100,10 @@ export function Address() {
             <SelectedCoffesContainer>
                 <p>Complete seu pedido</p>
                 <div className="box-coffes-selected">
-
+                    <CoffeeSelected/>
+                    <Divider />
+                    <CoffeeSelected/>
+                    <Divider />
                 </div>
             </SelectedCoffesContainer>
         </AddressContainer>
