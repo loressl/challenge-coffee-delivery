@@ -1,10 +1,11 @@
-import { AddressContainer, Divider, FormContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
+import { AddressContainer, ButtonConfirm, Divider, FormContainer, OrderedContainer, SelectedCoffesContainer } from "./styles";
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 import { Input } from "../../../../components/Input";
 import { Frame } from "../Frame";
 import { ButtonPayment } from "../ButtonPayment";
 import { ReactElement } from "react";
 import { CoffeeSelected } from "../CoffeeSelected";
+import { useNavigate } from "react-router-dom";
 
 interface TypeButtonPayment {
     type: string
@@ -16,27 +17,33 @@ const typesButtonPayment = [
     {
         type: 'credito',
         name: 'cartão de crédito',
-        icon: <CreditCard size={16}/>
+        icon: <CreditCard size={16} />
     },
     {
         type: 'debito',
         name: 'cartão de débito',
-        icon: <Bank size={16}/>
+        icon: <Bank size={16} />
     },
     {
         type: 'dinheiro',
         name: 'dinheiro',
-        icon: <Money size={16}/>
+        icon: <Money size={16} />
     },
 ] as TypeButtonPayment[]
 
 export function Address() {
+    let navigate = useNavigate()
+
+    function handleConfirm() {
+        navigate('/success')
+    }
+
     return (
         <AddressContainer>
             <OrderedContainer>
                 <p>Complete seu pedido</p>
                 <div className="box-address">
-                    <Frame 
+                    <Frame
                         icon={<MapPinLine size={22} />}
                         title="Endereço de Entrega"
                         subtitle="Informe o endereço onde deseja receber seu pedido"
@@ -56,7 +63,7 @@ export function Address() {
                                 placeholder="Número"
                                 widthCustom="12.5rem"
                             />
-                            <Input 
+                            <Input
                                 widthCustom="100%"
                                 placeholder="Complemento"
                                 optional="Opcional"
@@ -79,8 +86,8 @@ export function Address() {
                     </FormContainer>
                 </div>
                 <div className="payment">
-                    <Frame 
-                        icon={<CurrencyDollar size={22}/>}
+                    <Frame
+                        icon={<CurrencyDollar size={22} />}
                         title="Pagamento"
                         subtitle="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
                         colorIcon="purple"
@@ -100,10 +107,27 @@ export function Address() {
             <SelectedCoffesContainer>
                 <p>Complete seu pedido</p>
                 <div className="box-coffes-selected">
-                    <CoffeeSelected/>
+                    <CoffeeSelected />
                     <Divider />
-                    <CoffeeSelected/>
+                    <CoffeeSelected />
                     <Divider />
+                    <div className="prices">
+                        <div className="itens">
+                            <p className="title-price">Total de itens</p>
+                            <span>R$ 29,70</span>
+                        </div>
+                        <div className="itens">
+                            <p className="title-price">Entrega</p>
+                            <span>R$ 3,50</span>
+                        </div>
+                        <div className="total">
+                            <p className="title-total">Total</p>
+                            <span>R$ 33,20</span>
+                        </div>
+                    </div>
+                    <ButtonConfirm onClick={handleConfirm}>
+                        Confirmar pedido
+                    </ButtonConfirm>
                 </div>
             </SelectedCoffesContainer>
         </AddressContainer>
