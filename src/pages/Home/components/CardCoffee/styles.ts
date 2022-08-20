@@ -17,18 +17,24 @@ export const CardCoffeeContainer = styled.div`
     margin-bottom: 0.75rem;
   }
 
-  & .tag {
+  & .tag-container{
     display: flex;
-    padding: 4px 8px;
-    width: 5.063rem;
-    height: 1.313rem;
-    background: ${(props) => props.theme["yellow-light"]};
-    border-radius: 100px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: ${(props) => props.theme["yellow-dark"]};
+    flex-direction: row;
+    gap: 4px;
+
+    & .tag {
+      display: flex;
+      padding: 4px 8px;
+      height: 1.313rem;
+      background: ${(props) => props.theme["yellow-light"]};
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: ${(props) => props.theme["yellow-dark"]};
+    }
   }
+
 
   & .name-coffee {
     margin-top: 1rem;
@@ -49,6 +55,7 @@ export const CardCoffeeContainer = styled.div`
     padding: 0 20px 0 20px;
   }
 `;
+
 
 export const Price = styled.div`
   display: flex;

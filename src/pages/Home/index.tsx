@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import { CardCoffee } from "./components/CardCoffee";
+import { api } from "../../services/api";
+import { CardCoffee, Coffee } from "./components/CardCoffee";
 import { Intro } from "./components/Intro";
 import { HomeContainer } from "./styles";
 
 export function Home() {
-    const [teste, setTeste] = useState('')
+    const [coffees, setCoffees] = useState<Coffee[]>([])
 
     useEffect(() => {
         const loadCoffees = async () => {
-            await fetch('http://localhost:3000/coffees')
-                .then(response => response.json())
-                .then(data => setTeste(data[0].urlImage))
+            await api.get('/coffees')
+            .then(response => {
+                setCoffees(response.data)
+            })
         }
 
         loadCoffees()
 
     }, [])
-
-    console.log(teste)
 
     return (
         <HomeContainer>
@@ -25,13 +25,22 @@ export function Home() {
             <div className="coffee-list-container">
                 <p className="title-container">Nossos cafés</p>
                 <div className="coffee-list">
-                    <CardCoffee/>
-                    <CardCoffee/>
-                    <CardCoffee/>
-                    <CardCoffee/>
-                    <CardCoffee/>
-                    <CardCoffee/>
-                    <CardCoffee/>
+                    {coffees.length && (
+                        coffees.map((coffee) => (
+                            <CardCoffee 
+                                key={coffee.id}
+                                coffee={{
+                                    id: coffee.id,
+                                    title: coffee.title,
+                                    description: coffee.description,
+                                    urlImage: coffee.urlImage,
+                                    price: coffee.price,
+                                    tags: coffee.tags
+                                }}
+                                total={0}
+                            />
+                        ))
+                    )}
                     {/* <img src={teste} alt="teste" /> */}
                 </div>
             </div>

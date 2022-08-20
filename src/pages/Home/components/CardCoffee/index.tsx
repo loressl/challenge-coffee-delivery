@@ -1,23 +1,43 @@
 import { ButtonCart } from "../../../../components/ButtonCart";
 import { ButtonSelect } from "../../../../components/ButtonSelect";
 import { CardCoffeeContainer, Price } from "./styles";
-import coffeeTeste from '/coffee/arabe.svg'
 
-export function CardCoffee(){
+export interface Coffee{
+    id: number
+    description: string
+    tags: String[]
+    title: string
+    urlImage: string
+    price: number
+}
+
+export interface CardCoffeeProps {
+    coffee: Coffee
+    total: 0
+}
+
+export function CardCoffee({ coffee, total }: CardCoffeeProps){
+
     return(
         <CardCoffeeContainer>
-            <img src={coffeeTeste}  alt=""/>
-            <span className="tag">tradicional</span>
-            <p className="name-coffee">Expresso Tradicional</p>
-            <p className="description">O tradicional café feito com água quente e grãos moídos</p>
+            <img src={coffee.urlImage}  alt={coffee.title}/>
+            <div className="tag-container">
+                {coffee.tags.map((tag) => <span className="tag">{tag}</span>)}
+            </div>
+            <p className="name-coffee">{coffee.title}</p>
+            <p className="description">{coffee.description}</p>
             <Price>
-                <p className="value">R$<strong> 9,90</strong></p>
+                <p className="value">R$<strong> {coffee.price}</strong></p>
                 <div className="actions">
-                    <ButtonSelect widthButton="4.5rem" heightButton="2.375rem"/>
+                    <ButtonSelect 
+                        widthButton="4.5rem" 
+                        heightButton="2.375rem"
+                        total={0}
+                    />
                     <ButtonCart 
                         buttonColor="cart"
                         iconColorButton="cart"
-                        total={0}
+                        total={total}
                         buttonHover="cart"
                         onClickButton={() => console.log('cart')}
                     />

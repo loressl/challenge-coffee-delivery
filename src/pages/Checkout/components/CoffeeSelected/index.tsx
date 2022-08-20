@@ -11,7 +11,11 @@ export function CoffeeSelected(){
                 <div className="choose-more-coffee">
                     <span className="subtitle">Expresso Tradicional</span>
                     <div className="more-remove">
-                        <ButtonSelect widthButton="4.5rem" heightButton="2rem"/>
+                        <ButtonSelect 
+                            widthButton="4.5rem" 
+                            heightButton="2rem"
+                            total={0}
+                        />
                         <ButtonRemove>
                             <Trash size={16}/>
                             Remover

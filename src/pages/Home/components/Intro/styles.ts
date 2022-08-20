@@ -30,6 +30,8 @@ export const ContentTitleItems = styled.div`
   width: 100%;
   max-width: 36.75rem;
   flex-direction: column;
+  height: inherit;
+  justify-content: center;
 
   h1 {
     font-family: "Baloo 2";
