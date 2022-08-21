@@ -5,16 +5,18 @@ interface ButtonSelectProps {
     widthButton: string
     heightButton: string
     total: number
+    onIncrement: () => void
+    onDecrement:() => void
 }
 
-export function ButtonSelect({widthButton, heightButton, total}:ButtonSelectProps) {
+export function ButtonSelect({widthButton, heightButton, total, onIncrement, onDecrement}:ButtonSelectProps) {
     return (
         <ButtonSelectContainer widthButton={widthButton} heightButton={heightButton}>
-            <button>
+            <button onClick={onDecrement}>
                 <Minus size={14} />
             </button>
             <span>{total}</span>
-            <button>
+            <button onClick={onIncrement}>
                 <Plus size={14} />
             </button>
         </ButtonSelectContainer>

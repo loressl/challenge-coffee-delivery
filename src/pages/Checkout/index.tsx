@@ -1,10 +1,17 @@
 import { Address } from "./components/Address";
-import { CheckoutContainer } from "./styles";
+import { ConfirmOrdered } from "./components/ConfirmOrdered";
+import { Payment } from "./components/Payment";
+import { CheckoutContainer, OrderedContainer } from "./styles";
 
 export function Checkout() {
+
     return(
         <CheckoutContainer>
-            <Address/>
+            <OrderedContainer>
+                <Address/>
+                <Payment />
+            </OrderedContainer>
+            <ConfirmOrdered/>
         </CheckoutContainer>
     )
 }

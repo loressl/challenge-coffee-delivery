@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
+import { useCoffee } from "../../hooks/useCoffee";
 import { api } from "../../services/api";
-import { CardCoffee, Coffee } from "./components/CardCoffee";
+import { Coffee } from "../../types";
+import { CardCoffee } from "./components/CardCoffee";
 import { Intro } from "./components/Intro";
 import { HomeContainer } from "./styles";
 
-export function Home() {
-    const [coffees, setCoffees] = useState<Coffee[]>([])
+interface CoffeeItemsAmount {
+    [key: number]: number
+}
 
+export function Home() {
+    const [coffeesList, setCoffeesList] = useState<Coffee[]>([])
+    const {coffees} = useCoffee()
+    
+    const coffeeItemsAmount = coffees.reduce((sumAmount, coffee) => {
+        sumAmount[coffee.id] = coffee.amount
+        return sumAmount
+    }, {} as CoffeeItemsAmount)
+    
     useEffect(() => {
         const loadCoffees = async () => {
             await api.get('/coffees')
             .then(response => {
-                setCoffees(response.data)
+                setCoffeesList(response.data)
             })
         }
-
         loadCoffees()
-
     }, [])
 
     return (
@@ -25,8 +35,8 @@ export function Home() {
             <div className="coffee-list-container">
                 <p className="title-container">Nossos cafés</p>
                 <div className="coffee-list">
-                    {coffees.length && (
-                        coffees.map((coffee) => (
+                    {coffeesList.length && (
+                        coffeesList.map((coffee) => (
                             <CardCoffee 
                                 key={coffee.id}
                                 coffee={{
@@ -35,13 +45,12 @@ export function Home() {
                                     description: coffee.description,
                                     urlImage: coffee.urlImage,
                                     price: coffee.price,
-                                    tags: coffee.tags
+                                    tags: coffee.tags,
+                                    amount: coffeeItemsAmount[coffee.id] || 0
                                 }}
-                                total={0}
                             />
                         ))
                     )}
-                    {/* <img src={teste} alt="teste" /> */}
                 </div>
             </div>
         </HomeContainer>

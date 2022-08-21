@@ -1,5 +1,24 @@
 import styled from "styled-components";
 
+export const PaymentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2.5rem;
+  gap: 2rem;
+  width: 40rem;
+  height: 13rem;
+  background: ${(props) => props.theme["base-card"]};
+  border-radius: 6px;
+
+  & .paymentMethods {
+    display: flex;
+    width: 35rem;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+`;
+
 export const ButtonPaymentContainer = styled.button`
   display: flex;
   width: 11.167rem;
@@ -25,10 +44,9 @@ export const ButtonPaymentContainer = styled.button`
     background: ${(props) => props.theme["base-hover"]};
   }
 
-  &:focus{
-    border: 1px solid ${props=> props.theme.purple};
-    background: ${props => props.theme["purple-light"]};
+  &:focus {
+    border: 1px solid ${(props) => props.theme.purple};
+    background: ${(props) => props.theme["purple-light"]};
     box-shadow: 0 0 0 1px ${(props) => props.theme.purple};
   }
-
 `;
