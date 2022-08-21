@@ -12,19 +12,19 @@ interface CoffeeItemsAmount {
 
 export function Home() {
     const [coffeesList, setCoffeesList] = useState<Coffee[]>([])
-    const {coffees} = useCoffee()
-    
+    const { coffees } = useCoffee()
+
     const coffeeItemsAmount = coffees.reduce((sumAmount, coffee) => {
         sumAmount[coffee.id] = coffee.amount
         return sumAmount
     }, {} as CoffeeItemsAmount)
-    
+
     useEffect(() => {
         const loadCoffees = async () => {
             await api.get('/coffees')
-            .then(response => {
-                setCoffeesList(response.data)
-            })
+                .then(response => {
+                    setCoffeesList(response.data)
+                })
         }
         loadCoffees()
     }, [])
@@ -37,7 +37,7 @@ export function Home() {
                 <div className="coffee-list">
                     {coffeesList.length && (
                         coffeesList.map((coffee) => (
-                            <CardCoffee 
+                            <CardCoffee
                                 key={coffee.id}
                                 coffee={{
                                     id: coffee.id,

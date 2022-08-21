@@ -16,8 +16,8 @@ export function CardCoffee({ coffee }: CardCoffeeProps){
         if(!verifyCoffeeCart){
             addCoffee(id)
         } else {
-            increment && updateCoffeeAmount({coffeeId: id, amount: coffee.amount + 1})
-            decrement && updateCoffeeAmount({coffeeId: id, amount: coffee.amount - 1})
+            increment && updateCoffeeAmount({coffeeId: id, amount: verifyCoffeeCart.amount + 1})
+            decrement && updateCoffeeAmount({coffeeId: id, amount: verifyCoffeeCart.amount - 1})
         }
     }
 
@@ -36,8 +36,8 @@ export function CardCoffee({ coffee }: CardCoffeeProps){
                         widthButton="4.5rem" 
                         heightButton="2.375rem"
                         total={coffee.amount || 0}
-                        onDecrement={() => handleUpdateProduct(coffee.id, true, false)}
-                        onIncrement={() => handleUpdateProduct(coffee.id, false, true)}
+                        onDecrement={() => handleUpdateProduct(coffee.id, false, true)}
+                        onIncrement={() => handleUpdateProduct(coffee.id, true, false)}
                     />
                     <ButtonCart 
                         buttonColor="cart"
