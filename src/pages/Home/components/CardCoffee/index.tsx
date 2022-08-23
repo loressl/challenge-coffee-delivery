@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { ButtonCart } from "../../../../components/ButtonCart";
 import { ButtonSelect } from "../../../../components/ButtonSelect";
 import { useCoffee } from "../../../../hooks/useCoffee";
 import { Coffee } from "../../../../types";
+import { formatPrice } from "../../../../util/format";
 import { CardCoffeeContainer, Price } from "./styles";
 
 export interface CardCoffeeProps {
@@ -10,6 +12,11 @@ export interface CardCoffeeProps {
 
 export function CardCoffee({ coffee }: CardCoffeeProps){
     const { coffees, addCoffee, updateCoffeeAmount} = useCoffee()
+    let navigate = useNavigate()
+
+    function handleCheckout() {
+        navigate('/checkout')
+    }
 
     const handleUpdateProduct = (id: number, increment: boolean, decrement: boolean) => {
         const verifyCoffeeCart = coffees.find((item) => item.id === id)
@@ -30,7 +37,7 @@ export function CardCoffee({ coffee }: CardCoffeeProps){
             <p className="name-coffee">{coffee.title}</p>
             <p className="description">{coffee.description}</p>
             <Price>
-                <p className="value">R$<strong> {coffee.price}</strong></p>
+                <p className="value">{formatPrice(coffee.price).slice(0,2)}<strong>{formatPrice(coffee.price).slice(2)}</strong></p>
                 <div className="actions">
                     <ButtonSelect 
                         widthButton="4.5rem" 
@@ -44,7 +51,7 @@ export function CardCoffee({ coffee }: CardCoffeeProps){
                         iconColorButton="cart"
                         total={0}
                         buttonHover="cart"
-                        onClickButton={() => console.log('cart')}
+                        onClickButton={handleCheckout}
                     />
                 </div>
             </Price>

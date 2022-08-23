@@ -12,7 +12,7 @@ interface ButtonSelectProps {
 export function ButtonSelect({widthButton, heightButton, total, onIncrement, onDecrement}:ButtonSelectProps) {
     return (
         <ButtonSelectContainer widthButton={widthButton} heightButton={heightButton}>
-            <button onClick={onDecrement}>
+            <button onClick={onDecrement} disabled={total < 1}>
                 <Minus size={14} />
             </button>
             <span>{total}</span>

@@ -53,13 +53,22 @@ export function CartCoffeeProvider({ children }: CartCoffeeProviderProps) {
 
     const updateCoffeeAmount = async({coffeeId, amount}: UpdateCoffeeAmount)=>{
         try {
+            if (amount < 0){
+                return
+            }
+
             const newListCoffee = [...coffees]
             const coffee= newListCoffee.find((item) => item.id === coffeeId)
 
             if(coffee){
-                coffee.amount = amount
-                setCoffees(newListCoffee)
-                localStorage.setItem('@RocketCoffee:coffee', JSON.stringify(newListCoffee))
+                if (amount) {
+                    coffee.amount = amount
+                    setCoffees(newListCoffee)
+                    localStorage.setItem('@RocketCoffee:coffee', JSON.stringify(newListCoffee))
+                } else {
+                    setCoffees([])
+                    localStorage.removeItem('@RocketCoffee:coffee')
+                }
             }
         } catch (error) {
             toast.error('Erro na alteração de quantidade do produto')
