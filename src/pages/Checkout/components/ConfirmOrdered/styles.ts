@@ -67,11 +67,6 @@ export const ConfirmOrderedContainer = styled.div`
   }
 `;
 
-export const Divider = styled.div`
-  width: 100%;
-  border: 1px solid ${(props) => props.theme["base-button"]};
-`;
-
 export const ButtonConfirm = styled.button`
   display: flex;
   flex-direction: row;

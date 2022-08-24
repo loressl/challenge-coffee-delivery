@@ -69,3 +69,8 @@ export const ButtonRemove = styled.button`
     filter: brightness(0.95);
   }
 `;
+
+export const Divider = styled.div`
+  width: 100%;
+  border: 1px solid ${(props) => props.theme["base-button"]};
+`;

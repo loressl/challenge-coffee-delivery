@@ -16,11 +16,13 @@ interface CartCoffeeData {
     coffees: Coffee[]
     addCoffee: (coffeeId: number) => Promise<void>
     updateCoffeeAmount: ({coffeeId, amount}: UpdateCoffeeAmount) => void
+    deliveryFee: number
 }
 
 const CartCoffeeContext = createContext<CartCoffeeData>({} as CartCoffeeData)
 
 export function CartCoffeeProvider({ children }: CartCoffeeProviderProps) {
+    const deliveryFee = 3.5
     const [coffees, setCoffees] = useState<Coffee[]>(() => {
         const storagedCoffee = localStorage.getItem('@RocketCoffee:coffee')
 
@@ -76,7 +78,7 @@ export function CartCoffeeProvider({ children }: CartCoffeeProviderProps) {
     }
 
     return (
-        <CartCoffeeContext.Provider value={{ coffees, addCoffee, updateCoffeeAmount }}>
+        <CartCoffeeContext.Provider value={{ coffees, addCoffee, updateCoffeeAmount, deliveryFee }}>
             {children}
         </CartCoffeeContext.Provider>
     )

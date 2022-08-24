@@ -12,6 +12,7 @@ export interface CardCoffeeProps {
 
 export function CardCoffee({ coffee }: CardCoffeeProps){
     const { coffees, addCoffee, updateCoffeeAmount} = useCoffee()
+    
     let navigate = useNavigate()
 
     function handleCheckout() {
