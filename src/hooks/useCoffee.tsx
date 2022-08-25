@@ -17,6 +17,7 @@ interface CartCoffeeData {
     addCoffee: (coffeeId: number) => Promise<void>
     updateCoffeeAmount: ({coffeeId, amount}: UpdateCoffeeAmount) => void
     deliveryFee: number
+    removeCoffee: (coffeeId: number) => void
 }
 
 const CartCoffeeContext = createContext<CartCoffeeData>({} as CartCoffeeData)
@@ -77,8 +78,24 @@ export function CartCoffeeProvider({ children }: CartCoffeeProviderProps) {
         }
     }
 
+    const removeCoffee = (coffeeId: number) => {
+        try {
+            const newListCoffee = [...coffees]
+            const coffeeIndex = newListCoffee.findIndex((item) => item.id === coffeeId)
+            if(coffeeIndex >= 0) {
+                newListCoffee.splice(coffeeIndex, 1)
+                setCoffees(newListCoffee)
+                localStorage.setItem('@RocketCoffee:coffee', JSON.stringify(newListCoffee))
+            } else {
+                throw Error()
+            }
+        } catch (error) {
+            toast.error('Erro na remoção do produto')
+        }
+    }
+
     return (
-        <CartCoffeeContext.Provider value={{ coffees, addCoffee, updateCoffeeAmount, deliveryFee }}>
+        <CartCoffeeContext.Provider value={{ coffees, addCoffee, updateCoffeeAmount, deliveryFee, removeCoffee }}>
             {children}
         </CartCoffeeContext.Provider>
     )

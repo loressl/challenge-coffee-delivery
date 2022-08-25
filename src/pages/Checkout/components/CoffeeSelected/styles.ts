@@ -55,6 +55,7 @@ export const ButtonRemove = styled.button`
   width: 5.688rem;
   border-radius: 6px;
   background: ${(props) => props.theme["base-button"]};
+  cursor: pointer;
 
   font-size: 12px;
   text-transform: uppercase;

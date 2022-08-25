@@ -5,7 +5,7 @@ import { CoffeeSelected } from "../CoffeeSelected";
 import { ButtonConfirm, ConfirmOrderedContainer } from "./styles";
 
 export function ConfirmOrdered() {
-    const { coffees, updateCoffeeAmount, deliveryFee } = useCoffee()
+    const { coffees, deliveryFee } = useCoffee()
 
     const coffeesFormatted = coffees.map((coffee) => ({
         ...coffee,
@@ -25,25 +25,14 @@ export function ConfirmOrdered() {
         navigate('/success')
     }
 
-    const handleOnDecrement = (id: number, amount: number) => {
-        updateCoffeeAmount({ coffeeId: id, amount })
-    }
-
-    const handleOnIncrement = (id: number, amount: number) => {
-        updateCoffeeAmount({ coffeeId: id, amount })
-    }
-
     return (
         <ConfirmOrderedContainer>
             <p>Cafés selecionados</p>
             <div className="box-coffes-selected">
-                {coffeesFormatted.length &&
-                    coffeesFormatted.map((coffee) =>
+                {coffeesFormatted?.map((coffee) =>
                         <CoffeeSelected
                             coffee={coffee}
                             key={coffee.id}
-                            onDecrement={() => handleOnDecrement(coffee.id, coffee.amount - 1)}
-                            onIncrement={() => handleOnIncrement(coffee.id, coffee.amount + 1)}
                             subTotal={coffee.subTotal}
                         />
                     )
@@ -55,11 +44,11 @@ export function ConfirmOrdered() {
                     </div>
                     <div className="itens">
                         <p className="title-price">Entrega</p>
-                        <span>{formatPrice(deliveryFee)}</span>
+                        <span>{coffeesFormatted.length ? formatPrice(deliveryFee): formatPrice(0.0)}</span>
                     </div>
                     <div className="total">
                         <p className="title-total">Total</p>
-                        <span>{formatPrice(totalItens+deliveryFee)}</span>
+                        <span>{formatPrice( coffeesFormatted.length ? totalItens+deliveryFee: 0.0)}</span>
                     </div>
                 </div>
                 <ButtonConfirm onClick={handleConfirm}>

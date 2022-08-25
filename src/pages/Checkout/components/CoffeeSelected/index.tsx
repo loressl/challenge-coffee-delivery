@@ -1,16 +1,29 @@
 import { Trash } from "phosphor-react";
 import { ButtonSelect } from "../../../../components/ButtonSelect";
+import { useCoffee } from "../../../../hooks/useCoffee";
 import { Coffee } from "../../../../types";
 import { ButtonRemove, CoffeeSelectedContainer, Divider } from "./styles";
 
 interface CoffeeSelectedProps {
     coffee: Coffee
-    onIncrement: () => void
-    onDecrement: () => void
     subTotal: string
 }
 
-export function CoffeeSelected({coffee, onDecrement, onIncrement, subTotal }: CoffeeSelectedProps) {
+export function CoffeeSelected({coffee, subTotal }: CoffeeSelectedProps) {
+
+    const { updateCoffeeAmount, removeCoffee } = useCoffee()
+
+    const handleOnDecrement = (id: number, amount: number) => {
+        updateCoffeeAmount({ coffeeId: id, amount })
+    }
+
+    const handleOnIncrement = (id: number, amount: number) => {
+        updateCoffeeAmount({ coffeeId: id, amount })
+    }
+
+    const handleRemoveCoffee = (coffeeId: number) => {
+        removeCoffee(coffeeId)
+    }
 
     return (
         <>
@@ -24,10 +37,11 @@ export function CoffeeSelected({coffee, onDecrement, onIncrement, subTotal }: Co
                                 widthButton="4.5rem"
                                 heightButton="2rem"
                                 total={coffee.amount}
-                                onDecrement={onDecrement}
-                                onIncrement={onIncrement}
+                                disabledButton={coffee.amount === 1}
+                                onDecrement={() => handleOnDecrement(coffee.id, coffee.amount - 1)}
+                                onIncrement={() => handleOnIncrement(coffee.id, coffee.amount + 1)}
                             />
-                            <ButtonRemove>
+                            <ButtonRemove onClick={() => handleRemoveCoffee(coffee.id)}>
                                 <Trash size={16} />
                                 Remover
                             </ButtonRemove>

@@ -2,8 +2,21 @@ import { AddressContainer, FormContainer } from "./styles";
 import { MapPinLine } from 'phosphor-react'
 import { Input } from "../../../../components/Input";
 import { Frame } from "../Frame";
+import { cepMask } from '../../../../util/mask'
+import { FormEvent } from "react";
+import { useFormContext } from "react-hook-form";
 
 export function Address() {
+    const { register, setValue } = useFormContext()
+
+    const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
+        const target = e.target as HTMLInputElement
+        if (target.name === 'cep'){
+            const mask = cepMask(target.value)
+            setValue(target.name, mask)
+        }
+        console.log(target.name)
+    }
 
     return (
         <AddressContainer>
@@ -17,8 +30,11 @@ export function Address() {
                 />
                 <FormContainer>
                     <Input
+                        {...register('cep')}
                         placeholder="CEP"
                         widthCustom="12.5rem"
+                        maxLength={8}
+                        onChange={(e) => handleInputChange(e)}
                     />
                     <Input
                         placeholder="Rua"

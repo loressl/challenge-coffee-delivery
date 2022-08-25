@@ -44,6 +44,7 @@ export function CardCoffee({ coffee }: CardCoffeeProps){
                         widthButton="4.5rem" 
                         heightButton="2.375rem"
                         total={coffee.amount || 0}
+                        disabledButton={coffee.amount === 0}
                         onDecrement={() => handleUpdateProduct(coffee.id, false, true)}
                         onIncrement={() => handleUpdateProduct(coffee.id, true, false)}
                     />
