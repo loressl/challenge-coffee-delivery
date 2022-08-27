@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { useCoffee } from "../../../../hooks/useCoffee";
 import { formatPrice } from "../../../../util/format";
 import { CoffeeSelected } from "../CoffeeSelected";
-import { ButtonConfirm, ConfirmOrderedContainer } from "./styles";
+import { ConfirmOrderedContainer, ButtonConfirm } from "./styles";
 
 export function ConfirmOrdered() {
     const { coffees, deliveryFee } = useCoffee()
@@ -19,23 +18,17 @@ export function ConfirmOrdered() {
             return sumTotal
         }, 0)
 
-    let navigate = useNavigate()
-
-    function handleConfirm() {
-        navigate('/success')
-    }
-
     return (
         <ConfirmOrderedContainer>
             <p>Cafés selecionados</p>
-            <div className="box-coffes-selected">
+            <div className="box-coffees-selected">
                 {coffeesFormatted?.map((coffee) =>
-                        <CoffeeSelected
-                            coffee={coffee}
-                            key={coffee.id}
-                            subTotal={coffee.subTotal}
-                        />
-                    )
+                    <CoffeeSelected
+                        coffee={coffee}
+                        key={coffee.id}
+                        subTotal={coffee.subTotal}
+                    />
+                )
                 }
                 <div className="prices">
                     <div className="itens">
@@ -44,17 +37,18 @@ export function ConfirmOrdered() {
                     </div>
                     <div className="itens">
                         <p className="title-price">Entrega</p>
-                        <span>{coffeesFormatted.length ? formatPrice(deliveryFee): formatPrice(0.0)}</span>
+                        <span>{coffeesFormatted.length ? formatPrice(deliveryFee) : formatPrice(0.0)}</span>
                     </div>
                     <div className="total">
                         <p className="title-total">Total</p>
-                        <span>{formatPrice( coffeesFormatted.length ? totalItens+deliveryFee: 0.0)}</span>
+                        <span>{formatPrice(coffeesFormatted.length ? totalItens + deliveryFee : 0.0)}</span>
                     </div>
                 </div>
-                <ButtonConfirm onClick={handleConfirm}>
+                <ButtonConfirm type="submit" disabled={!coffeesFormatted.length}>
                     Confirmar pedido
                 </ButtonConfirm>
             </div>
         </ConfirmOrderedContainer>
+
     )
 }

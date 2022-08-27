@@ -13,7 +13,7 @@ export const ConfirmOrderedContainer = styled.div`
     margin-bottom: 15px;
   }
 
-  & .box-coffes-selected {
+  & .box-coffees-selected {
     display: flex;
     flex-direction: column;
     width: 28rem;

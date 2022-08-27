@@ -1,22 +1,10 @@
-import { AddressContainer, FormContainer } from "./styles";
+import { AddressContainer, FormContainer, Input, InputContainer, Error } from "./styles";
 import { MapPinLine } from 'phosphor-react'
-import { Input } from "../../../../components/Input";
 import { Frame } from "../Frame";
-import { cepMask } from '../../../../util/mask'
-import { FormEvent } from "react";
 import { useFormContext } from "react-hook-form";
 
 export function Address() {
-    const { register, setValue } = useFormContext()
-
-    const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
-        const target = e.target as HTMLInputElement
-        if (target.name === 'cep'){
-            const mask = cepMask(target.value)
-            setValue(target.name, mask)
-        }
-        console.log(target.name)
-    }
+    const { register, formState: { errors } } = useFormContext()
 
     return (
         <AddressContainer>
@@ -29,41 +17,49 @@ export function Address() {
                     colorIcon="yellowDark"
                 />
                 <FormContainer>
-                    <Input
-                        {...register('cep')}
-                        placeholder="CEP"
-                        widthCustom="12.5rem"
-                        maxLength={8}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <Input
-                        placeholder="Rua"
-                        widthCustom="100%"
-                    />
+                    <InputContainer widthCustom="12.5rem">
+                        <Input {...register('cep')} placeholder="CEP" maxLength={8} />
+                    </InputContainer>
+                    {errors.cep && <Error>{errors.cep?.message?.toString()}</Error>}
+                    <InputContainer widthCustom="100%">
+                        <Input {...register('street')} placeholder="Rua" />
+                    </InputContainer>
+                    {errors.street && <Error>{errors.street?.message?.toString()}</Error>}
                     <div className="complement">
-                        <Input
-                            placeholder="Número"
-                            widthCustom="12.5rem"
-                        />
-                        <Input
-                            widthCustom="100%"
-                            placeholder="Complemento"
-                            optional="Opcional"
-                        />
+                        <div className="complement-input">
+                            <InputContainer widthCustom="12.5rem">
+                                <Input
+                                    {...register('number', { valueAsNumber: true })}
+                                    type="number"
+                                    placeholder="Número"
+                                />
+                            </InputContainer>
+                            {errors.number && <Error>{errors.number?.message?.toString()}</Error>}
+                        </div>
+                        <InputContainer widthCustom="100%">
+                            <Input {...register('complement')} placeholder="Complemento" />
+                            <span>Opcional</span>
+                        </InputContainer>
                     </div>
                     <div className="complement">
-                        <Input
-                            placeholder="Bairro"
-                            widthCustom="12.5rem"
-                        />
-                        <Input
-                            placeholder="Cidade"
-                            widthCustom="100%"
-                        />
-                        <Input
-                            placeholder="UF"
-                            widthCustom="3.75rem"
-                        />
+                        <div className="complement-input">
+                            <InputContainer widthCustom="12.5rem">
+                                <Input {...register('district')} placeholder="Bairro" />
+                            </InputContainer>
+                            {errors.district && <Error>{errors.district?.message?.toString()}</Error>}
+                        </div>
+                        <div className="complement-input">
+                            <InputContainer widthCustom="17.25rem">
+                                <Input {...register('city')} placeholder="Cidade" />
+                            </InputContainer>
+                            {errors.city && <Error>{errors.city?.message?.toString()}</Error>}
+                        </div>
+                        <div className="complement-input">
+                            <InputContainer widthCustom="3.75rem">
+                                <Input {...register('state')} placeholder="UF" maxLength={2} />
+                            </InputContainer>
+                            {errors.state && <Error>{errors.state?.message?.toString()}</Error>}
+                        </div>
                     </div>
                 </FormContainer>
             </div>

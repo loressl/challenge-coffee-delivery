@@ -18,7 +18,6 @@ export const AddressContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     width: 40rem;
-    height: 23.25rem;
     background: ${(props) => props.theme["base-card"]};
     border-radius: 6px;
     margin-bottom: 12px;
@@ -27,19 +26,72 @@ export const AddressContainer = styled.div`
   }
 `;
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 1rem;
   width: 35rem;
-  height: 12.5rem;
   align-self: stretch;
 
   & .complement {
     display: flex;
     gap: 0.75rem;
     width: 100%;
+
+    & .complement-input{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 `;
+
+
+interface InputContainerProps {
+  widthCustom: string;
+}
+
+export const InputContainer = styled.div<InputContainerProps>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2.75rem;
+  width: ${(props) => props.widthCustom};
+  background: ${props => props.theme["base-input"]};
+  border: 1px solid ${props => props.theme["base-button"]};
+  border-radius: 4px;
+  position: relative;
+  justify-content: end;
+
+  span {
+    font-size: 12px;
+    color: ${props => props.theme["base-label"]};;
+    position: absolute;
+    right: 12px;
+    font-style: italic;
+  }
+`;
+
+export const Input = styled.input`
+  font-size: 14px;
+  color: ${(props) => props.theme["base-text"]};
+  flex-grow: 1;
+  width: inherit;
+  background: none;
+  border: none;
+  padding: 0.75rem;
+  border-radius: inherit;
+
+  &::placeholder {
+    color: ${(props) => props.theme["base-label"]};
+  }
+`;
+
+export const Error = styled.span`
+  margin-bottom: 0px;
+  color: ${props => props.theme.error};
+  font-size: 12px;
+  font-style: italic;
+`
