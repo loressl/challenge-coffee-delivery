@@ -18,6 +18,7 @@ interface CartCoffeeData {
     updateCoffeeAmount: ({coffeeId, amount}: UpdateCoffeeAmount) => void
     deliveryFee: number
     removeCoffee: (coffeeId: number) => void
+    cleanOrder: () => void
 }
 
 const CartCoffeeContext = createContext<CartCoffeeData>({} as CartCoffeeData)
@@ -94,8 +95,20 @@ export function CartCoffeeProvider({ children }: CartCoffeeProviderProps) {
         }
     }
 
+    const cleanOrder =() => {
+        setCoffees([])
+        localStorage.removeItem('@RocketCoffee:coffee')
+    }
+
     return (
-        <CartCoffeeContext.Provider value={{ coffees, addCoffee, updateCoffeeAmount, deliveryFee, removeCoffee }}>
+        <CartCoffeeContext.Provider value={{ 
+            coffees, 
+            addCoffee, 
+            updateCoffeeAmount, 
+            deliveryFee, 
+            removeCoffee,
+            cleanOrder 
+        }}>
             {children}
         </CartCoffeeContext.Provider>
     )

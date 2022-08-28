@@ -7,11 +7,12 @@ import { ConfirmOrdered } from "./components/ConfirmOrdered";
 import { Payment } from "./components/Payment";
 import { CheckoutContainer, OrderedContainer } from "./styles";
 import { useNavigate } from 'react-router-dom';
+import { useCoffee } from '../../hooks/useCoffee';
 
 enum PaymentType {
-    credit = 'credito',
-    debit = 'debito',
-    money = 'dinheiro'
+    credit = 'credit',
+    debit = 'debit',
+    money = 'money'
 }
 
 const confirmOrderFormValidationSchema = zod.object({
@@ -33,6 +34,7 @@ export type ConfirmOrderFormData = zod.infer<typeof confirmOrderFormValidationSc
 
 export function Checkout() {
     let navigate = useNavigate()
+    const {cleanOrder} = useCoffee()
 
     const confirmOrderForm = useForm<ConfirmOrderFormData>({
         resolver: zodResolver(confirmOrderFormValidationSchema),
@@ -41,9 +43,10 @@ export function Checkout() {
     const { handleSubmit } = confirmOrderForm
 
     const handleConfirmeOrdered=(data: ConfirmOrderFormData) =>{
-        console.log(data)
-        //navigate('/success')
-        console.log('clicou')
+        navigate('/success' , {
+            state: data
+        })
+        cleanOrder()
     }
  
     return (
