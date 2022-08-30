@@ -12,9 +12,8 @@ export const HomeContainer = styled.div`
     flex-direction: column;
 
     & .title-container {
-      width: 100%;
       margin-top: 2rem;
-      margin-left: calc(50% - 193px/2 - 90px);
+      margin-right: calc(50% - 193px/2 - 90px);
       font-family: 'Baloo 2';
       font-weight: 800;
       font-size: 2rem;
