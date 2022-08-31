@@ -8,6 +8,7 @@ import { Payment } from "./components/Payment";
 import { CheckoutContainer, OrderedContainer } from "./styles";
 import { useNavigate } from 'react-router-dom';
 import { useCoffee } from '../../hooks/useCoffee';
+import { useEffect } from 'react';
 
 enum PaymentType {
     credit = 'credit',
@@ -18,8 +19,8 @@ enum PaymentType {
 const confirmOrderFormValidationSchema = zod.object({
     cep: zod.string().min(1, 'Informe o CEP'),
     street: zod.string().min(1, 'Informe a rua'),
-    number: zod.number().min(1, 'Informe o número da casa'),
-    complement: zod.string(),
+    number: zod.number().min(-1,'Informe o número da casa'),
+    complement: zod.string().optional(),
     district: zod.string().min(1, 'Informe o bairro'),
     city: zod.string().min(1, 'Informe sua cidade'),
     state: zod.string().min(1, 'Informe a sigla do seu estado'),
@@ -34,7 +35,13 @@ export type ConfirmOrderFormData = zod.infer<typeof confirmOrderFormValidationSc
 
 export function Checkout() {
     let navigate = useNavigate()
-    const {cleanOrder} = useCoffee()
+    const {coffees,cleanOrder} = useCoffee()
+
+    useEffect(() => {
+        if(!coffees.length) {
+            navigate('/')
+        }
+    }, [])
 
     const confirmOrderForm = useForm<ConfirmOrderFormData>({
         resolver: zodResolver(confirmOrderFormValidationSchema),

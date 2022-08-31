@@ -17,7 +17,6 @@ export const ConfirmOrderedContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 28rem;
-    height: 31.125rem;
     background: ${(props) => props.theme["base-card"]};
     border-radius: 6px 44px;
     padding: 2.5rem;

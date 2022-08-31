@@ -39,19 +39,19 @@ export const FormContainer = styled.div`
     display: flex;
     gap: 0.75rem;
     width: 100%;
-
-    & .complement-input{
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
   }
 `;
-
 
 interface InputContainerProps {
   widthCustom: string;
 }
+
+export const InputWrapper = styled.div<InputContainerProps>`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: ${(props) => props.widthCustom};
+`;
 
 export const InputContainer = styled.div<InputContainerProps>`
   display: flex;
@@ -88,10 +88,3 @@ export const Input = styled.input`
     color: ${(props) => props.theme["base-label"]};
   }
 `;
-
-export const Error = styled.span`
-  margin-bottom: 0px;
-  color: ${props => props.theme.error};
-  font-size: 12px;
-  font-style: italic;
-`

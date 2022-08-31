@@ -1,8 +1,9 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
 import { ReactElement } from "react";
 import { useFormContext } from "react-hook-form";
+import { ErrorComponent } from "../../../../components";
 import { Frame } from "../Frame";
-import { ButtonPaymentContainer, PaymentContainer, Error } from "./styles";
+import { ButtonPaymentContainer, PaymentContainer } from "./styles";
 
 interface TypeButtonPayment {
     type: string
@@ -18,7 +19,7 @@ export const typesButtonPayment = [
     },
     {
         type: 'debit',
-        name: 'Cartão de Cébito',
+        name: 'Cartão de Débito',
         icon: <Bank size={16} />
     },
     {
@@ -56,7 +57,7 @@ export function Payment() {
                     </ButtonPaymentContainer>
                 ))}
             </div>
-            {errors.paymentType && <Error>{errors.paymentType?.message?.toString()}</Error>}
+            {errors.paymentType && <ErrorComponent text={errors.paymentType?.message?.toString() || ''}/>}
         </PaymentContainer>
     )
 }
