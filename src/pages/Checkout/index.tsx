@@ -19,8 +19,8 @@ enum PaymentType {
 const confirmOrderFormValidationSchema = zod.object({
     cep: zod.string().min(1, 'Informe o CEP'),
     street: zod.string().min(1, 'Informe a rua'),
-    number: zod.number().min(1, 'Informe o número da casa'),
-    complement: zod.string(),
+    number: zod.number().min(-1,'Informe o número da casa'),
+    complement: zod.string().optional(),
     district: zod.string().min(1, 'Informe o bairro'),
     city: zod.string().min(1, 'Informe sua cidade'),
     state: zod.string().min(1, 'Informe a sigla do seu estado'),

@@ -19,7 +19,7 @@ export const typesButtonPayment = [
     },
     {
         type: 'debit',
-        name: 'Cartão de Cébito',
+        name: 'Cartão de Débito',
         icon: <Bank size={16} />
     },
     {
